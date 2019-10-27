@@ -1,0 +1,35 @@
+---
+title: "Week 2 Leaflet"
+author: "Eduardo Bravo"
+date: "27 de Octubre de 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+## Preparing environment
+
+```{r preparing environment, warning=FALSE}
+setwd('D:/OneDrive/Academico/Programa Data Science/Curso 9. Developing Data Products/Semana 2/Leaflet')
+library(leaflet)
+
+df <- read.csv('es.csv', header = TRUE)
+```
+
+
+## Spain Map
+
+```{r leaflet map}
+df %>%
+        leaflet() %>%
+        addTiles() %>%
+        addAwesomeMarkers(lat = ~lat, 
+                          lng = ~lng, 
+                          label = ~city,
+                          popup = ~population,
+                          clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE)
+                          )
+```
+
